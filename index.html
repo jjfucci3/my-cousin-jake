@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my cousin jake</title>
+  <style>
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('Fonts/Satoshi Font OTF/Satoshi-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('Fonts/Satoshi Font OTF/Satoshi-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('Fonts/Satoshi Font OTF/Satoshi-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Satoshi';
+      src: url('Fonts/Satoshi Font OTF/Satoshi-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background-color: #F8F6E8;
+      color: #096038;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    header {
+      padding-top: 40px;
+      padding-bottom: 32px;
+    }
+
+    header .site-name {
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      color: #096038;
+    }
+
+    .hero-photo {
+      width: 100%;
+      display: block;
+      margin-bottom: 72px;
+    }
+
+    .about {
+      margin-bottom: 72px;
+    }
+
+    .about p {
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 400;
+      margin-bottom: 1.4em;
+    }
+
+    .menu-list {
+      list-style: disc;
+      padding-left: 1.4em;
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .confidentiality {
+      margin-top: 1.4em;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .carousel-outer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 72px;
+      margin-bottom: 72px;
+      user-select: none;
+    }
+
+    .carousel {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+      height: 340px;
+    }
+
+    .carousel-track {
+      position: relative;
+      height: 100%;
+    }
+
+    .carousel-track img {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      object-fit: cover;
+      opacity: 0.3;
+      height: 210px;
+      transition: left 0.38s ease, height 0.38s ease, opacity 0.38s ease;
+    }
+
+    .carousel-track img.active {
+      opacity: 1;
+      height: 340px;
+    }
+
+    @media (max-width: 600px) {
+      .carousel { height: 240px; }
+      .carousel-track img { height: 150px; }
+      .carousel-track img.active { height: 240px; }
+    }
+
+    .carousel-btn {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #096038;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      color: #F8F6E8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.85;
+    }
+
+    .carousel-btn:hover {
+      opacity: 1;
+    }
+
+    .carousel-track img {
+      cursor: pointer;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 24px;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: min(760px, 92vw);
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .lightbox-caption {
+      color: #F8F6E8;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      margin-top: 16px;
+      opacity: 0.8;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #F8F6E8;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    .cta {
+      margin-bottom: 32px;
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .calendly-section {
+      margin-bottom: 80px;
+    }
+
+    .testimonials {
+      margin-bottom: 72px;
+    }
+
+    .testimonials h2 {
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #096038;
+      margin-bottom: 24px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 400;
+      color: #096038;
+      padding-bottom: 48px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="site-name">my cousin jake</span>
+    </header>
+  </div>
+
+  <div class="container">
+    <img class="hero-photo" src="Media/jake-smiling.JPG" alt="Jake smiling">
+  </div>
+
+  <div class="container">
+    <div class="about">
+      <p>My name's Jake Fucci, and I'm a 22 year old artist, entrepreneur, rock band manager, men's support group leader, and most importantly, big cousin. In my teenage years I dealt with some heavy mental struggles and came out the other side with a clear sense of who I am and a strong ability to communicate my thoughts and feelings in difficult moments. As the oldest cousin in my family, I've always embraced the chance to set an example and inspire the younger ones to be their best selves in the pursuit of a balanced, joyful life. Now I get to expand that role, working with young men who just need a mentor in their corner to help them focus on things like:</p>
+
+      <ul class="menu-list">
+        <li>confidence &amp; comfort with yourself</li>
+        <li>navigating anxiety &amp; mental pressure</li>
+        <li>balancing relationships</li>
+        <li>exploring your interests &amp; defining your priorities</li>
+        <li>public speaking &amp; presentation skills</li>
+        <li>how to communicate when something feels wrong</li>
+        <li>outings &amp; experiences for when you just want someone to go with</li>
+      </ul>
+
+      <p class="confidentiality">I'm based between NYC and South Florida and always prefer meeting in person, but video call works great too. Our conversations stay between you, me, and only those who you give me permission to share info with. I'm not a therapist or doctor, but I'm someone relatable who can offer real support, honest advice, and an open ear. If you ever need more than that, I'll make sure to connect you to the right people in my network of mental health professionals so we can get you exactly what you need.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="carousel-outer">
+      <button class="carousel-btn" id="carouselPrev" aria-label="Previous photo">&#8592;</button>
+      <div class="carousel" id="photoCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          <img src="Media/jake-nicky.jpeg" alt="Jake and Nicky" data-caption="Jake and Nicky at a concert">
+          <img src="Media/jake-sean.jpeg" alt="Jake and Sean" data-caption="Jake and Sean at dinner">
+          <img src="Media/jake-alex.jpg" alt="Jake and Alex" data-caption="Jake and Alex after brunch">
+          <img src="Media/jake-callisto.JPG" alt="Jake and Callisto" data-caption="Jake and Callisto catching up">
+        </div>
+      </div>
+      <button class="carousel-btn" id="carouselNext" aria-label="Next photo">&#8594;</button>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <script>
+    (function () {
+      const viewport = document.getElementById('photoCarousel');
+      const track = document.getElementById('carouselTrack');
+      const prev = document.getElementById('carouselPrev');
+      const next = document.getElementById('carouselNext');
+      const GAP = 14;
+      const RATIO = 0.62;
+      let index = 0;
+      const slides = Array.from(track.children);
+      const total = slides.length;
+
+      function signedDist(j) {
+        let d = ((j - index) % total + total) % total;
+        if (d > total / 2) d -= total;
+        return d;
+      }
+
+      function goTo(i) {
+        index = (i + total) % total;
+        const vw = viewport.offsetWidth;
+        const sw = Math.round(vw * RATIO);
+        const center = (vw - sw) / 2;
+
+        slides.forEach((img, j) => {
+          const d = signedDist(j);
+          img.style.width = sw + 'px';
+          img.style.left = (center + d * (sw + GAP)) + 'px';
+          img.classList.toggle('active', d === 0);
+          img.style.opacity = d === 0 ? '1' : Math.abs(d) === 1 ? '0.3' : '0';
+        });
+      }
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.dataset.caption || '';
+        lightbox.classList.add('open');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      slides.forEach((img, j) => {
+        img.addEventListener('click', () => {
+          if (img.classList.contains('active')) {
+            openLightbox(img);
+          } else {
+            goTo(j);
+          }
+        });
+      });
+
+      goTo(0);
+      window.addEventListener('resize', () => goTo(index));
+
+      prev.addEventListener('click', () => goTo(index - 1));
+      next.addEventListener('click', () => goTo(index + 1));
+
+      let startX = 0;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(index + (diff > 0 ? 1 : -1));
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') goTo(index - 1);
+        if (e.key === 'ArrowRight') goTo(index + 1);
+      });
+    })();
+  </script>
+
+  <div class="container">
+    <div class="calendly-section">
+      <p class="cta">Please fill out the form below if you would like to schedule a free intro call and learn more about how we can work together. Thanks, and I look forward to talking!</p>
+      <div class="calendly-inline-widget"
+        data-url="https://calendly.com/mycousinjake/intro-call"
+        style="min-width:320px;height:700px;">
+      </div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="testimonials">
+      <h2>testimonials</h2>
+      <!-- add testimonials here: <blockquote> quote text <cite> name, relationship </cite> </blockquote> -->
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 my cousin jake
+    </div>
+  </footer>
+
+</body>
+</html>
