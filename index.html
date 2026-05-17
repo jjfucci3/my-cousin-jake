@@ -56,11 +56,29 @@
       padding-bottom: 32px;
     }
 
+    header {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+    }
+
     header .site-name {
       font-weight: 700;
       font-size: 20px;
       letter-spacing: 0.04em;
       color: #096038;
+    }
+
+    header .nav-link {
+      font-weight: 400;
+      font-size: 17px;
+      color: #096038;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    header .nav-link:hover {
+      text-decoration: underline;
     }
 
     .hero-photo {
@@ -248,6 +266,8 @@
   <div class="container">
     <header>
       <span class="site-name">my cousin jake</span>
+      <a class="nav-link" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">book a call</a>
+      <a class="nav-link" onclick="document.getElementById('testimonials').scrollIntoView({behavior:'smooth'})">testimonials</a>
     </header>
   </div>
 
@@ -378,7 +398,7 @@
 
   <div class="container">
     <div class="calendly-section">
-      <p class="cta">Please fill out the form below to schedule a free intro call and learn more about how we can work together. Thanks, and I look forward to talking!</p>
+      <p id="book" class="cta">Please fill out the form below to schedule a free intro call and learn more about how we can work together. Thanks, and I look forward to talking!</p>
       <div class="calendly-inline-widget"
         data-url="https://calendly.com/mycousinjake/intro-call"
         style="min-width:320px;height:700px;">
@@ -388,9 +408,10 @@
   </div>
 
   <div class="container">
-    <div class="testimonials">
+    <div id="testimonials" class="testimonials">
       <h2>testimonials</h2>
       <!-- add testimonials here: <blockquote> quote text <cite> name, relationship </cite> </blockquote> -->
+      <div style="height: 200px;"></div>
     </div>
   </div>
 
