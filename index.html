@@ -189,6 +189,17 @@
       cursor: pointer;
     }
 
+    .carousel-caption {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 400;
+      color: #096038;
+      opacity: 0.7;
+      margin-top: -48px;
+      margin-bottom: 72px;
+      min-height: 1.5em;
+    }
+
     .lightbox {
       display: none;
       position: fixed;
@@ -260,6 +271,74 @@
       letter-spacing: 0.12em;
       color: #096038;
       margin-bottom: 24px;
+    }
+
+    .testimonials blockquote {
+      background: #096038;
+      border-radius: 16px;
+      padding: 20px 24px 16px;
+      margin: 0 0 16px;
+    }
+
+    .testimonials blockquote cite {
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 15px;
+      color: #F8F6E8;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-body {
+      position: relative;
+      max-height: 116px;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .testimonial-body::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: linear-gradient(transparent, #096038);
+      pointer-events: none;
+      transition: opacity 0.35s;
+    }
+
+    .testimonial-body.expanded {
+      max-height: 2000px;
+    }
+
+    .testimonial-body.expanded::after {
+      opacity: 0;
+    }
+
+    .testimonials blockquote p {
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 400;
+      color: #F8F6E8;
+      margin-bottom: 1.4em;
+    }
+
+    .testimonial-toggle {
+      background: none;
+      border: none;
+      color: #F8F6E8;
+      cursor: pointer;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0.65;
+      padding: 8px 0 2px;
+      display: block;
+    }
+
+    .testimonial-toggle:hover {
+      opacity: 1;
     }
 
     .contact-section {
@@ -367,6 +446,9 @@
       <button class="carousel-btn" id="carouselNext" aria-label="Next photo">&#8594;</button>
     </div>
   </div>
+  <div class="container">
+    <p class="carousel-caption" id="carouselCaption"></p>
+  </div>
 
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightboxClose">&times;</button>
@@ -405,7 +487,10 @@
           img.classList.toggle('active', d === 0);
           img.style.opacity = d === 0 ? '1' : Math.abs(d) === 1 ? '0.3' : '0';
         });
+        carouselCaption.textContent = slides[index].dataset.caption || '';
       }
+
+      const carouselCaption = document.getElementById('carouselCaption');
 
       const lightbox = document.getElementById('lightbox');
       const lightboxImg = document.getElementById('lightboxImg');
@@ -470,8 +555,14 @@
   <div class="container">
     <div id="testimonials" class="testimonials">
       <h2>testimonials</h2>
-      <!-- add testimonials here: <blockquote> quote text <cite> name, relationship </cite> </blockquote> -->
-      <div style="height: 200px;"></div>
+      <blockquote>
+        <cite>Ben C</cite>
+        <div class="testimonial-body">
+          <p>Jake has never ceased to inspire me. His endless and infectious bounds of passion for his work partnered with his empathetic and resilient mindset make him the perfect person to call upon for guidance. In the years I've known him, I've watched him use his gracious moral compass to guide myself and others in the best direction. If you are ever in need of a shoulder to lean on, Jake Fucci is who you call.</p>
+          <p>Out of our many conversations, those that stick out the most are the ones that challenge me. I remember taking a long walk around the city with Jake and being so engrossed in conversation that time flew by. His engaging presence combined with a high level of emotional maturity never fails to grasp my attention and leave me with a newfound sense of motivation. He has an innate skill to spark my creative inspiration, which stands as one of the most valuable aspects of his mentorship to me. Learning from Jake is a treasured experience of mine and I couldn't recommend him enough.</p>
+        </div>
+        <button class="testimonial-toggle">more</button>
+      </blockquote>
     </div>
   </div>
 
@@ -494,6 +585,16 @@
       </div>
     </div>
   </div>
+
+  <script>
+    document.querySelectorAll('.testimonial-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const body = btn.previousElementSibling;
+        const expanded = body.classList.toggle('expanded');
+        btn.textContent = expanded ? 'less' : 'more';
+      });
+    });
+  </script>
 
   <footer>
     <div class="container">
