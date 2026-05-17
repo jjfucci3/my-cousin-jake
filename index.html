@@ -60,12 +60,14 @@
       display: flex;
       align-items: baseline;
       justify-content: space-between;
-      gap: 24px;
+      gap: 12px 24px;
+      flex-wrap: wrap;
     }
 
     header .nav-links {
       display: flex;
       gap: 24px;
+      flex-wrap: wrap;
     }
 
     header .site-name {
@@ -73,6 +75,8 @@
       font-size: 20px;
       letter-spacing: 0.04em;
       color: #096038;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     header .nav-link {
