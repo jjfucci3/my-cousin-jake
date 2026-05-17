@@ -59,6 +59,12 @@
     header {
       display: flex;
       align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    header .nav-links {
+      display: flex;
       gap: 24px;
     }
 
@@ -266,8 +272,10 @@
   <div class="container">
     <header>
       <span class="site-name">my cousin jake</span>
-      <a class="nav-link" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">book a call</a>
-      <a class="nav-link" onclick="document.getElementById('testimonials').scrollIntoView({behavior:'smooth'})">testimonials</a>
+      <div class="nav-links">
+        <a class="nav-link" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">book a call</a>
+        <a class="nav-link" onclick="document.getElementById('testimonials').scrollIntoView({behavior:'smooth'})">testimonials</a>
+      </div>
     </header>
   </div>
 
