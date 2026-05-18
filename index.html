@@ -30,6 +30,11 @@
       font-style: normal;
     }
 
+    :root {
+      --bg: #F8F6E8;
+      --fg: #096038;
+    }
+
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -37,12 +42,18 @@
     }
 
     html, body {
-      background-color: #F8F6E8;
-      color: #096038;
+      background-color: var(--bg);
+      color: var(--fg);
       font-family: 'Satoshi', sans-serif;
       font-weight: 400;
       font-size: 17px;
       line-height: 1.7;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.boys-mode {
+      --bg: #096038;
+      --fg: #F8F6E8;
     }
 
     .container {
@@ -53,10 +64,7 @@
 
     header {
       padding-top: 40px;
-      padding-bottom: 32px;
-    }
-
-    header {
+      padding-bottom: 16px;
       display: flex;
       align-items: baseline;
       justify-content: space-between;
@@ -74,7 +82,7 @@
       font-weight: 700;
       font-size: 20px;
       letter-spacing: 0.04em;
-      color: #096038;
+      color: var(--fg);
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -82,13 +90,37 @@
     header .nav-link {
       font-weight: 400;
       font-size: 17px;
-      color: #096038;
+      color: var(--fg);
       text-decoration: none;
       cursor: pointer;
     }
 
     header .nav-link:hover {
       text-decoration: underline;
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 8px;
+      padding-bottom: 32px;
+    }
+
+    .toggle-btn {
+      font-family: 'Satoshi', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      border: 1.5px solid var(--fg);
+      background: transparent;
+      color: var(--fg);
+    }
+
+    .toggle-btn.active {
+      background: var(--fg);
+      color: var(--bg);
     }
 
     .hero-photo {
@@ -108,27 +140,30 @@
       margin-bottom: 1.4em;
     }
 
+    .about p:last-child {
+      margin-bottom: 0;
+    }
+
     .menu-list {
       list-style: disc;
       padding-left: 1.4em;
       font-weight: 500;
       font-size: 17px;
       line-height: 1.7;
+      margin-bottom: 1.4em;
     }
 
-    .confidentiality {
-      margin-top: 1.4em;
-      font-size: 17px;
-      line-height: 1.7;
-      font-weight: 400;
+    .signature {
+      font-weight: 500;
+      margin-top: 0;
     }
 
     .carousel-outer {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-top: 72px;
-      margin-bottom: 72px;
+      margin-top: 36px;
+      margin-bottom: 36px;
       user-select: none;
     }
 
@@ -170,11 +205,11 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: #096038;
+      background: var(--fg);
       border: none;
       cursor: pointer;
       font-size: 15px;
-      color: #F8F6E8;
+      color: var(--bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -193,7 +228,7 @@
       text-align: center;
       font-size: 14px;
       font-weight: 400;
-      color: #096038;
+      color: var(--fg);
       opacity: 0.7;
       margin-top: -48px;
       margin-bottom: 72px;
@@ -249,13 +284,6 @@
       opacity: 1;
     }
 
-    .cta {
-      margin-bottom: 32px;
-      font-size: 17px;
-      line-height: 1.7;
-      font-weight: 400;
-    }
-
     .calendly-section {
       margin-bottom: 80px;
     }
@@ -269,12 +297,12 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: #096038;
+      color: var(--fg);
       margin-bottom: 24px;
     }
 
     .testimonials blockquote {
-      background: #096038;
+      background: var(--fg);
       border-radius: 16px;
       padding: 20px 24px 16px;
       margin: 0 0 16px;
@@ -285,7 +313,7 @@
       font-style: normal;
       font-weight: 700;
       font-size: 15px;
-      color: #F8F6E8;
+      color: var(--bg);
       margin-bottom: 10px;
     }
 
@@ -303,7 +331,7 @@
       left: 0;
       right: 0;
       height: 48px;
-      background: linear-gradient(transparent, #096038);
+      background: linear-gradient(transparent, var(--fg));
       pointer-events: none;
       transition: opacity 0.35s;
     }
@@ -320,14 +348,14 @@
       font-size: 17px;
       line-height: 1.7;
       font-weight: 400;
-      color: #F8F6E8;
+      color: var(--bg);
       margin-bottom: 1.4em;
     }
 
     .testimonial-toggle {
       background: none;
       border: none;
-      color: #F8F6E8;
+      color: var(--bg);
       cursor: pointer;
       font-family: 'Satoshi', sans-serif;
       font-size: 14px;
@@ -350,7 +378,7 @@
       font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: #096038;
+      color: var(--fg);
       margin-bottom: 24px;
     }
 
@@ -364,7 +392,7 @@
     }
 
     .contact-item a {
-      color: #096038;
+      color: var(--fg);
       text-decoration: none;
     }
 
@@ -376,7 +404,7 @@
       background: none;
       border: none;
       cursor: pointer;
-      color: #096038;
+      color: var(--fg);
       padding: 0;
       font-size: 15px;
       line-height: 1;
@@ -392,7 +420,7 @@
       text-align: center;
       font-size: 13px;
       font-weight: 400;
-      color: #096038;
+      color: var(--fg);
       padding-bottom: 48px;
     }
   </style>
@@ -403,36 +431,104 @@
     <header>
       <span class="site-name">my cousin jake</span>
       <div class="nav-links">
-        <a class="nav-link" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">book a call</a>
-        <a class="nav-link" onclick="document.getElementById('testimonials').scrollIntoView({behavior:'smooth'})">testimonials</a>
-        <a class="nav-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">contact</a>
+        <a class="nav-link" onclick="scrollToBook()">book a call</a>
+        <a class="nav-link" id="nav-testimonials" onclick="document.getElementById('carousel-anchor').scrollIntoView({behavior:'smooth'})">testimonials</a>
+        <a class="nav-link" onclick="scrollToContact()">contact</a>
       </div>
     </header>
-  </div>
-
-  <div class="container">
-    <img class="hero-photo" src="Media/jake-smiling.JPG" alt="Jake smiling">
-  </div>
-
-  <div class="container">
-    <div class="about">
-      <p>My name's Jake Fucci, and I'm a 22 year old artist, entrepreneur, rock band manager, men's support group leader, and most importantly, big cousin. In my teenage years I dealt with some heavy mental struggles and came out the other side with a clear sense of who I am and a strong ability to communicate my thoughts and feelings in difficult moments. As the oldest cousin in my family, I've always embraced the chance to set an example and inspire the younger ones to be their best selves in the pursuit of a balanced, joyful life. Now I get to expand that role, working with young men (typically aged 13-20) who just need a mentor in their corner to help them focus on things like:</p>
-
-      <ul class="menu-list">
-        <li>confidence &amp; comfort with yourself</li>
-        <li>navigating anxiety &amp; mental pressure</li>
-        <li>balancing relationships</li>
-        <li>exploring your interests &amp; defining your priorities</li>
-        <li>public speaking &amp; presentation skills</li>
-        <li>how to communicate when something feels wrong</li>
-        <li>outings &amp; experiences for when you just want someone to go with</li>
-      </ul>
-
-      <p class="confidentiality">Our conversations stay between you, me, and only those who you give me permission to share info with. I'm not a therapist or doctor, but I'm someone relatable who can offer real support, honest advice, and an open ear. If you ever need more than that, I'll make sure to connect you to the right people in my network of mental health professionals so we can get you exactly what you need.</p>
+    <div class="view-toggle">
+      <button class="toggle-btn active" id="btn-parents" onclick="switchView('parents')">for the parents</button>
+      <button class="toggle-btn" id="btn-boys" onclick="switchView('boys')">for the boys</button>
     </div>
   </div>
 
-  <div class="container">
+  <!-- PARENTS VIEW -->
+  <div id="view-parents">
+    <div class="container">
+      <img class="hero-photo" src="Media/jake-smiling.JPG" alt="Jake smiling">
+    </div>
+
+    <div class="container">
+      <div class="about">
+        <p>My name's Jake. I am a 22 year old professional mentor and advocate for young men across the country. I specialize in helping my boys focus on:</p>
+
+        <ul class="menu-list">
+          <li>confidence &amp; comfort with themself</li>
+          <li>navigating anxiety &amp; mental pressure</li>
+          <li>balancing relationships</li>
+          <li>exploring college/career interests &amp; defining priorities</li>
+          <li>public speaking &amp; presentation skills</li>
+          <li>how to communicate when something feels wrong</li>
+          <li>outings &amp; experiences when they just need someone to go with</li>
+        </ul>
+
+        <p>In my teenage years I dealt with severe anxiety, depression, manic episodes, and hospitalizations. Thanks to nearly a decade of therapy, psychiatric medication, a caring support system, and most importantly, a deep self-awareness and understanding of my vulnerabilities, I have made a phenomenal recovery beyond my loved ones' expectations.</p>
+
+        <p>Since recovering, I have dedicated a large portion of my life to helping young men with all kinds of growing pains. I've taken boys from video game addictions to D1 scholarships, from detention to their dream school, from fearing social settings to asking their crush to prom. I have also taken boys from shriveling at their diagnosis to conquering their disorder, and from battling severe crisis alone to being safe in the hands of the very medical professionals who took care of me when I was sick.</p>
+
+        <p>I am not a therapist or doctor. What I provide is a relatable perspective and actionable, structured advice based on personal experience and what I've learned from working with other young men. My real job here is to make sure that your boy does the important internal work before he reaches the point where I was, or before he's out in the real world with responsibilities that he's expected to handle without the proper foundation.</p>
+
+        <p>Please use the form below to schedule a free introductory call with me where I can walk you, your son, or both of you through what working together might look like.</p>
+
+        <p>Thank you.</p>
+        <p class="signature">– Jake Fucci</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="calendly-section">
+        <div id="book" class="calendly-inline-widget"
+          data-url="https://calendly.com/mycousinjake/intro-call"
+          style="min-width:320px;height:700px;">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOYS VIEW (hidden initially) -->
+  <div id="view-boys" style="display:none">
+    <div class="container">
+      <img class="hero-photo" src="Media/jake-green-hair.jpg" alt="Jake">
+    </div>
+
+    <div class="container">
+      <div class="about">
+        <p>What's up man. You might be wondering why your mom or dad asked you to check out my site. Before we go any further, I want to make something clear: I am not a babysitter, I am not a tutor, and I am not a therapist. I call this service "My Cousin Jake" because if we get to work together you'll quickly see how my role can be compared to that of the coolest big cousin you've ever (or never) had.</p>
+
+        <p>When I was your age, I wished I had someone just a couple years older who I could actually relate to and learn from. Someone who could show me it was all gonna work out. No bias, no agenda, no bigger plans for me that I didn't ask for.</p>
+
+        <p>I get to spend half my day working with dudes like you, and the rest making crazy music, managing a sick rock band called Stony Kill, and running around with my awesome girlfriend. I live between New York and South Florida, I get to travel, I'm building a career I love, and most importantly I'm actually happy. But it wasn't always like this.</p>
+
+        <p>Senior year I was a top student committed to Vanderbilt. I'd spent most of high school super stressed or depressed, and once I got into college I just felt numb and frustrated. I couldn't appreciate what I had accomplished, I was dealing with some pain from an old relationship, and even though I had a lot of friends and a great family, I felt like nobody really understood me. These problems started to really build up after I graduated and I masked them by traveling and partying with my friends all summer until I actually lost my mind and spiraled into a psychotic episode. It's a long story, but I basically faked my death, changed my identity, and went missing in a foreign country for days until they found me in a mental hospital. It was a real life horror movie. After that, I couldn't go to college, I had to spend a bunch of time in treatment and recovery centers, and everyone just treated me like the crazy sick kid. It was miserable.</p>
+
+        <p>I'm telling you this because I never thought anything like this could happen to me, and I'm not saying it's gonna happen to you. I'm saying that whatever you're carrying right now matters. And if nobody in your life is helping you deal with it, it builds. I found that out the hard way, but I'm grateful I learned from it and can use my experience to help other people.</p>
+
+        <p>After everything, I spent a couple years figuring out who I actually was. What I actually wanted. How to talk about what was going on inside my head before it got out of hand. And once I did that work, everything else, my career, my relationships, the life I have now — it all fell into place. Internal stuff first. Everything else follows. That's what I help you with. We meet up or call, we talk, we might go do something. No agenda, no homework, no weird exercises. Just real conversations with someone who's been through it and came out the other side with a life he loves.</p>
+
+        <p>If you're open to this, fill out the form and we'll jump on a call. No pressure. Just figure out if it feels right.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="calendly-section">
+        <div id="book-boys" class="calendly-inline-widget"
+          data-url="https://calendly.com/mycousinjake/intro-call"
+          style="min-width:320px;height:700px;">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="about" style="margin-bottom: 72px;">
+        <p>Important note: if you are experiencing severe mental or emotional struggles, therapy and psychiatry may be very effective for you. Again, I cannot provide those services, but if we decide that you need something more I'm always happy to connect you with one of my very trusted mental health professionals. They helped me through some very difficult times and I could not thank them enough for that.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHARED: carousel, testimonials, contact -->
+  <div class="container" id="carousel-anchor">
     <div class="carousel-outer">
       <button class="carousel-btn" id="carouselPrev" aria-label="Previous photo">&#8592;</button>
       <div class="carousel" id="photoCarousel">
@@ -448,108 +544,6 @@
   </div>
   <div class="container">
     <p class="carousel-caption" id="carouselCaption"></p>
-  </div>
-
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightboxClose">&times;</button>
-    <img id="lightboxImg" src="" alt="">
-    <p class="lightbox-caption" id="lightboxCaption"></p>
-  </div>
-
-  <script>
-    (function () {
-      const viewport = document.getElementById('photoCarousel');
-      const track = document.getElementById('carouselTrack');
-      const prev = document.getElementById('carouselPrev');
-      const next = document.getElementById('carouselNext');
-      const GAP = 14;
-      const RATIO = 0.62;
-      let index = 0;
-      const slides = Array.from(track.children);
-      const total = slides.length;
-
-      function signedDist(j) {
-        let d = ((j - index) % total + total) % total;
-        if (d > total / 2) d -= total;
-        return d;
-      }
-
-      function goTo(i) {
-        index = (i + total) % total;
-        const vw = viewport.offsetWidth;
-        const sw = Math.round(vw * RATIO);
-        const center = (vw - sw) / 2;
-
-        slides.forEach((img, j) => {
-          const d = signedDist(j);
-          img.style.width = sw + 'px';
-          img.style.left = (center + d * (sw + GAP)) + 'px';
-          img.classList.toggle('active', d === 0);
-          img.style.opacity = d === 0 ? '1' : Math.abs(d) === 1 ? '0.3' : '0';
-        });
-        carouselCaption.textContent = slides[index].dataset.caption || '';
-      }
-
-      const carouselCaption = document.getElementById('carouselCaption');
-
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightboxImg');
-      const lightboxCaption = document.getElementById('lightboxCaption');
-      const lightboxClose = document.getElementById('lightboxClose');
-
-      function openLightbox(img) {
-        lightboxImg.src = img.src;
-        lightboxCaption.textContent = img.dataset.caption || '';
-        lightbox.classList.add('open');
-      }
-
-      function closeLightbox() {
-        lightbox.classList.remove('open');
-      }
-
-      lightboxClose.addEventListener('click', closeLightbox);
-      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-      slides.forEach((img, j) => {
-        img.addEventListener('click', () => {
-          if (img.classList.contains('active')) {
-            openLightbox(img);
-          } else {
-            goTo(j);
-          }
-        });
-      });
-
-      goTo(0);
-      window.addEventListener('resize', () => goTo(index));
-
-      prev.addEventListener('click', () => goTo(index - 1));
-      next.addEventListener('click', () => goTo(index + 1));
-
-      let startX = 0;
-      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-      track.addEventListener('touchend', e => {
-        const diff = startX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 40) goTo(index + (diff > 0 ? 1 : -1));
-      });
-
-      document.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') goTo(index - 1);
-        if (e.key === 'ArrowRight') goTo(index + 1);
-      });
-    })();
-  </script>
-
-  <div class="container">
-    <div class="calendly-section">
-      <p id="book" class="cta">Please fill out the form below to schedule a free intro call and learn more about how we can work together in-person or remotely. Thanks, and I look forward to talking!</p>
-      <div class="calendly-inline-widget"
-        data-url="https://calendly.com/mycousinjake/intro-call"
-        style="min-width:320px;height:700px;">
-      </div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-    </div>
   </div>
 
   <div class="container">
@@ -586,7 +580,97 @@
     </div>
   </div>
 
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
+
+  <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
   <script>
+    // Carousel
+    (function () {
+      const viewport = document.getElementById('photoCarousel');
+      const track = document.getElementById('carouselTrack');
+      const prev = document.getElementById('carouselPrev');
+      const next = document.getElementById('carouselNext');
+      const carouselCaption = document.getElementById('carouselCaption');
+      const GAP = 14;
+      const RATIO = 0.62;
+      let index = 0;
+      const slides = Array.from(track.children);
+      const total = slides.length;
+
+      function signedDist(j) {
+        let d = ((j - index) % total + total) % total;
+        if (d > total / 2) d -= total;
+        return d;
+      }
+
+      function goTo(i) {
+        index = (i + total) % total;
+        const vw = viewport.offsetWidth;
+        const sw = Math.round(vw * RATIO);
+        const center = (vw - sw) / 2;
+        slides.forEach((img, j) => {
+          const d = signedDist(j);
+          img.style.width = sw + 'px';
+          img.style.left = (center + d * (sw + GAP)) + 'px';
+          img.classList.toggle('active', d === 0);
+          img.style.opacity = d === 0 ? '1' : Math.abs(d) === 1 ? '0.3' : '0';
+        });
+        carouselCaption.textContent = slides[index].dataset.caption || '';
+      }
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightboxImg');
+      const lightboxCaption = document.getElementById('lightboxCaption');
+      const lightboxClose = document.getElementById('lightboxClose');
+
+      function openLightbox(img) {
+        lightboxImg.src = img.src;
+        lightboxCaption.textContent = img.dataset.caption || '';
+        lightbox.classList.add('open');
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+      }
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+      slides.forEach((img, j) => {
+        img.addEventListener('click', () => {
+          if (img.classList.contains('active')) {
+            openLightbox(img);
+          } else {
+            goTo(j);
+          }
+        });
+      });
+
+      goTo(0);
+      window.addEventListener('resize', () => goTo(index));
+      prev.addEventListener('click', () => goTo(index - 1));
+      next.addEventListener('click', () => goTo(index + 1));
+
+      let startX = 0;
+      track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      track.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(index + (diff > 0 ? 1 : -1));
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') goTo(index - 1);
+        if (e.key === 'ArrowRight') goTo(index + 1);
+      });
+    })();
+
+    // Testimonial toggle
     document.querySelectorAll('.testimonial-toggle').forEach(btn => {
       btn.addEventListener('click', () => {
         const body = btn.previousElementSibling;
@@ -594,6 +678,40 @@
         btn.textContent = expanded ? 'less' : 'more';
       });
     });
+
+    // View switching
+    function switchView(view) {
+      const parentsView = document.getElementById('view-parents');
+      const boysView = document.getElementById('view-boys');
+      const btnParents = document.getElementById('btn-parents');
+      const btnBoys = document.getElementById('btn-boys');
+      const navTestimonials = document.getElementById('nav-testimonials');
+
+      if (view === 'parents') {
+        parentsView.style.display = '';
+        boysView.style.display = 'none';
+        btnParents.classList.add('active');
+        btnBoys.classList.remove('active');
+        document.body.classList.remove('boys-mode');
+      } else {
+        parentsView.style.display = 'none';
+        boysView.style.display = '';
+        btnParents.classList.remove('active');
+        btnBoys.classList.add('active');
+        document.body.classList.add('boys-mode');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function scrollToBook() {
+      const id = document.body.classList.contains('boys-mode') ? 'book-boys' : 'book';
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollToContact() {
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
   </script>
 
   <footer>
