@@ -421,6 +421,14 @@
       margin-bottom: 72px;
     }
 
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: var(--bg);
+      transition: background-color 0.3s;
+    }
+
     footer {
       text-align: center;
       font-size: 13px;
@@ -432,6 +440,7 @@
 </head>
 <body>
 
+  <div class="sticky-header">
   <div class="container">
     <header>
       <span class="site-name">my cousin jake</span>
@@ -445,6 +454,7 @@
       <button class="toggle-btn active" id="btn-parents" onclick="switchView('parents')">for the parents</button>
       <button class="toggle-btn" id="btn-boys" onclick="switchView('boys')">for the boys</button>
     </div>
+  </div>
   </div>
 
   <!-- PARENTS VIEW -->
@@ -695,12 +705,20 @@
     });
 
     // View switching
+    const scrollPositions = { parents: 0, boys: null };
+    let currentView = 'parents';
+
     function switchView(view) {
+      if (view === currentView) return;
+
       const parentsView = document.getElementById('view-parents');
       const boysView = document.getElementById('view-boys');
       const btnParents = document.getElementById('btn-parents');
       const btnBoys = document.getElementById('btn-boys');
-      const navTestimonials = document.getElementById('nav-testimonials');
+
+      // Save scroll position for the view we're leaving
+      scrollPositions[currentView] = window.scrollY;
+      currentView = view;
 
       if (view === 'parents') {
         parentsView.style.display = '';
@@ -716,7 +734,13 @@
         document.body.classList.add('boys-mode');
       }
 
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // First visit to this tab → scroll to top; return visit → restore position
+      if (scrollPositions[view] === null) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollPositions[view] = 0;
+      } else {
+        window.scrollTo({ top: scrollPositions[view], behavior: 'instant' });
+      }
     }
 
     function scrollToBook() {
