@@ -236,6 +236,23 @@
       pointer-events: none;
     }
 
+    .audio-progress-handle {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--fg);
+      pointer-events: none;
+      transition: transform 0.1s;
+    }
+
+    .audio-progress-bar:hover .audio-progress-handle {
+      transform: translate(-50%, -50%) scale(1.3);
+    }
+
     .audio-time {
       font-size: 12px;
       font-weight: 500;
@@ -243,6 +260,50 @@
       color: var(--fg);
       letter-spacing: 0.03em;
     }
+
+    .audio-player.inverted {
+      background: var(--fg);
+    }
+
+    .audio-player.inverted .audio-play-btn {
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .audio-player.inverted .audio-progress-bar {
+      background: rgba(0, 0, 0, 0.15);
+    }
+
+    .audio-player.inverted .audio-progress-fill,
+    .audio-player.inverted .audio-progress-handle {
+      background: var(--bg);
+    }
+
+    .audio-player.inverted .audio-time {
+      color: var(--bg);
+    }
+
+    .audio-testimonial.hidden {
+      display: none;
+    }
+
+    .load-more-btn {
+      display: block;
+      margin: 24px auto 0;
+      background: none;
+      border: 1.5px solid rgba(248, 246, 232, 0.4);
+      color: var(--fg);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 28px;
+      border-radius: 999px;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+
+    .load-more-btn:hover { opacity: 0.7; }
 
     .contact-section {
       margin-bottom: 80px;
@@ -351,8 +412,8 @@
     <header>
       <span class="site-name">my cousin jake</span>
       <div class="nav-links">
-        <a class="nav-link" onclick="document.getElementById('book').scrollIntoView({behavior:'smooth'})">book a reading</a>
-        <a class="nav-link" onclick="document.getElementById('carousel-anchor').scrollIntoView({behavior:'smooth'})">testimonials</a>
+        <a class="nav-link" onclick="(function(){ const h = document.querySelector('.sticky-header').offsetHeight; const el = document.getElementById('book'); const y = el.getBoundingClientRect().top + window.scrollY - h - 16; window.scrollTo({top: y, behavior: 'smooth'}); })()">book a reading</a>
+        <a class="nav-link" onclick="(function(){ const h = document.querySelector('.sticky-header').offsetHeight; const el = document.querySelector('#testimonials h2'); const y = el.getBoundingClientRect().top + window.scrollY - h - 40; window.scrollTo({top: y, behavior: 'smooth'}); })()">testimonials</a>
         <a class="nav-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">contact</a>
       </div>
     </header>
@@ -399,8 +460,8 @@
       <h2>testimonials</h2>
 
       <div class="audio-testimonial">
-        <span class="audio-name">Ben C.</span>
-        <div class="audio-player" data-src="Media/testimonial-ben.m4a">
+        <span class="audio-name">Rueby</span>
+        <div class="audio-player" data-src="Audio/Rueby Testimonial.m4a">
           <button class="audio-play-btn" aria-label="Play">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -415,8 +476,8 @@
       </div>
 
       <div class="audio-testimonial">
-        <span class="audio-name">Name</span>
-        <div class="audio-player" data-src="Media/testimonial-2.m4a">
+        <span class="audio-name">Arya</span>
+        <div class="audio-player" data-src="Audio/Arya Testimonial.m4a">
           <button class="audio-play-btn" aria-label="Play">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
@@ -429,6 +490,105 @@
           </div>
         </div>
       </div>
+
+      <div class="audio-testimonial">
+        <span class="audio-name">Maria and Madeline</span>
+        <div class="audio-player" data-src="Audio/Maria and Madeline Testimonial.m4a">
+          <button class="audio-play-btn" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bar">
+              <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time">0:00 / 0:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-testimonial">
+        <span class="audio-name">Jonathan</span>
+        <div class="audio-player" data-src="Audio/Jonathan Testimonial.m4a">
+          <button class="audio-play-btn" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bar">
+              <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time">0:00 / 0:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-testimonial">
+        <span class="audio-name">Aleen</span>
+        <div class="audio-player" data-src="Audio/Aleen Testimonial.m4a">
+          <button class="audio-play-btn" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bar">
+              <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time">0:00 / 0:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-testimonial">
+        <span class="audio-name">Ryan</span>
+        <div class="audio-player" data-src="Audio/Ryan Testimonial.m4a">
+          <button class="audio-play-btn" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bar">
+              <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time">0:00 / 0:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-testimonial">
+        <span class="audio-name">Anonymous</span>
+        <div class="audio-player" data-src="Audio/Anonymous Testimonial 1.m4a">
+          <button class="audio-play-btn" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bar">
+              <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time">0:00 / 0:00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-testimonial">
+        <span class="audio-name">Sunday</span>
+        <div class="audio-player" data-src="Audio/Sunday Testimonial.m4a">
+          <button class="audio-play-btn" aria-label="Play">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <div class="audio-progress-wrap">
+            <div class="audio-progress-bar">
+              <div class="audio-progress-fill"></div>
+            </div>
+            <div class="audio-time">0:00 / 0:00</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="load-more-btn" id="load-more-btn" style="display:none">more</button>
+      <button class="load-more-btn" id="load-less-btn" style="display:none">less</button>
 
     </div>
   </div>
@@ -472,10 +632,43 @@
 <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
   <script>
+    // Testimonial pagination
+    const PAGE_SIZE = 4;
+    const allTestimonials = Array.from(document.querySelectorAll('.audio-testimonial'));
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const loadLessBtn = document.getElementById('load-less-btn');
+    let shown = PAGE_SIZE;
+
+    function updateVisibility() {
+      allTestimonials.forEach((t, i) => {
+        t.classList.toggle('hidden', i >= shown);
+      });
+      loadMoreBtn.style.display = shown < allTestimonials.length ? 'block' : 'none';
+      loadLessBtn.style.display = shown > PAGE_SIZE ? 'block' : 'none';
+    }
+
+    loadMoreBtn.addEventListener('click', () => {
+      shown += PAGE_SIZE;
+      updateVisibility();
+    });
+
+    loadLessBtn.addEventListener('click', () => {
+      shown = PAGE_SIZE;
+      updateVisibility();
+      document.getElementById('carousel-anchor').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    updateVisibility();
+
     // Audio players
+    function fmt(s) {
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60);
+      return m + ':' + String(sec).padStart(2, '0');
+    }
+
     document.querySelectorAll('.audio-player').forEach(player => {
       const src = player.dataset.src;
-      const audio = new Audio(src);
       const playBtn = player.querySelector('.audio-play-btn');
       const iconPlay = player.querySelector('.icon-play');
       const iconPause = player.querySelector('.icon-pause');
@@ -483,11 +676,15 @@
       const bar = player.querySelector('.audio-progress-bar');
       const timeEl = player.querySelector('.audio-time');
 
-      function fmt(s) {
-        const m = Math.floor(s / 60);
-        const sec = Math.floor(s % 60);
-        return m + ':' + String(sec).padStart(2, '0');
-      }
+      // add scrubber handle
+      const handle = document.createElement('div');
+      handle.className = 'audio-progress-handle';
+      bar.appendChild(handle);
+
+      // preload metadata only so duration shows on load
+      const audio = new Audio();
+      audio.preload = 'metadata';
+      player._audio = audio;
 
       audio.addEventListener('loadedmetadata', () => {
         timeEl.textContent = '0:00 / ' + fmt(audio.duration);
@@ -496,6 +693,7 @@
       audio.addEventListener('timeupdate', () => {
         const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
         fill.style.width = pct + '%';
+        handle.style.left = pct + '%';
         timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
       });
 
@@ -503,11 +701,13 @@
         iconPlay.style.display = '';
         iconPause.style.display = 'none';
         fill.style.width = '0%';
+        handle.style.left = '0%';
         audio.currentTime = 0;
       });
 
+      audio.src = src;
+
       playBtn.addEventListener('click', () => {
-        // pause any other playing audio
         document.querySelectorAll('.audio-player').forEach(other => {
           if (other !== player) {
             const otherAudio = other._audio;
@@ -529,13 +729,36 @@
         }
       });
 
-      bar.addEventListener('click', e => {
+      function scrubTo(e) {
         const rect = bar.getBoundingClientRect();
-        const pct = (e.clientX - rect.left) / rect.width;
+        const pct = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
         audio.currentTime = pct * audio.duration;
+        fill.style.width = (pct * 100) + '%';
+        handle.style.left = (pct * 100) + '%';
+      }
+
+      bar.addEventListener('mousedown', e => {
+        scrubTo(e);
+        const onMove = e => scrubTo(e);
+        const onUp = () => {
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onUp);
+        };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
       });
 
-      player._audio = audio;
+      // touch support
+      bar.addEventListener('touchstart', e => {
+        scrubTo(e.touches[0]);
+        const onMove = e => scrubTo(e.touches[0]);
+        const onEnd = () => {
+          document.removeEventListener('touchmove', onMove);
+          document.removeEventListener('touchend', onEnd);
+        };
+        document.addEventListener('touchmove', onMove);
+        document.addEventListener('touchend', onEnd);
+      });
     });
   </script>
 
